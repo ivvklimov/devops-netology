@@ -111,10 +111,10 @@ Your version of Terraform is out of date! The latest version
 is 1.6.4. You can update by downloading from https://www.terraform.io/downloads.html
 ```
 
-![image](https://github.com/ivvklimov/devops-netology/blob/05-virt-02-iaac/05-virt-02-iaac/03/03.png)
+![image](03/03.png)
 
 -----------------
 ##### 4.
 
-![image](https://github.com/ivvklimov/devops-netology/blob/05-virt-02-iaac/05-virt-02-iaac/04/01.png)
-![image](https://github.com/ivvklimov/devops-netology/blob/05-virt-02-iaac/05-virt-02-iaac/04/02.png)
+![image](04/01.png)
+![image](04/02.png)
