@@ -211,5 +211,26 @@ root@1b37cc356ca7:/data#
 ```
 
 -----------------
-## Задача 4
+## Задача 4*
+
+Собираем образ на основе [Dockerfile](04/Dockerfile)
+```
+kiv@netology:~/homeworks/virtd-homeworks/05-virt-03-docker/04$ docker build -t zxbit/netology-05-virt-03-docker-04-ansible:latest .
+[+] Building 194.9s (9/9) FINISHED                                                                                                                      
+...
+```
+
+Загружаем образ в удаленный репозиторий:
+```
+kiv@netology:~/homeworks/virtd-homeworks/05-virt-03-docker/04$ docker push zxbit/netology-05-virt-03-docker-04-ansible:latest
+The push refers to repository [docker.io/zxbit/netology-05-virt-03-docker-04-ansible]
+5f70bf18a086: Mounted from zxbit/netology-05-virt-03-docker-01-nginx
+5a70ca41150f: Pushed
+fc1d8c368949: Pushed
+9733ccc39513: Mounted from library/alpine
+latest: digest: sha256:4773d05cdf819aaaa43864a3ffcbc4d06b7f29eec48b23ba67eca2129aa830ab size: 1153
+kiv@netology:~/homeworks/virtd-homeworks/05-virt-03-docker/04$
+```
+
+[Ссылка на репозиторий с образом](https://hub.docker.com/repository/docker/zxbit/netology-05-virt-03-docker-04-ansible/general)
 
