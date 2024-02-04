@@ -1,0 +1,26 @@
+[webservers]
+
+%{~ for i in webservers ~}
+${i.name}   ansible_host=${i.network_interface.0.nat_ip_address}   fqdn=${i.fqdn}
+
+%{~ endfor ~}
+
+[databases]
+
+%{~ for i in databases ~}
+${i.name}   ansible_host=${i.network_interface.0.nat_ip_address}   fqdn=${i.fqdn}
+
+%{~ endfor ~}
+
+[storage]
+
+%{~ for i in storage ~}
+${i.name}   
+%{~ if i.network_interface.0.nat_ip_address!="" ~}
+  ansible_host=${i.network_interface.0.nat_ip_address}
+%{~ else ~}
+  ansible_host=${i.network_interface.0.ip_address}
+%{~ endif ~}
+   fqdn=${i.fqdn}
+
+%{~ endfor ~}
