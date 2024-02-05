@@ -1,0 +1,8 @@
+version: "3.8"
+
+include:
+  - ubuntu-20-04/docker-compose.yml
+  - ubuntu-24-04/docker-compose.yml
+  - centos-7/docker-compose.yml
+  - fedora-38/docker-compose.yml
+  - fedora-39/docker-compose.yml

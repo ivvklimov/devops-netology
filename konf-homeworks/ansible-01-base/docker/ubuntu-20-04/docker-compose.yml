@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  ubuntu-20-04:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "ubuntu-20-04"
