@@ -11,3 +11,9 @@
         ansible_connection: docker
       ubuntu-24-04:
         ansible_connection: docker
+  local:
+    hosts:
+      localhost-01:
+        ansible_connection: local
+      localhost-02:
+        ansible_connection: local
