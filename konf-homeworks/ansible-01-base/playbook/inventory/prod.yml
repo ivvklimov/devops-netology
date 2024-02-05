@@ -1,0 +1,13 @@
+---
+  el:
+    hosts:
+      centos-7:
+        ansible_connection: docker
+      fedora-39:
+        ansible_connection: docker
+  deb:
+    hosts:
+      ubuntu-20-04:
+        ansible_connection: docker
+      ubuntu-24-04:
+        ansible_connection: docker
