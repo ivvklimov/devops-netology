@@ -6,4 +6,3 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: "ubuntu-20-04"
-

@@ -99,18 +99,53 @@ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
 ## Задача 1
 *При помощи ansible-vault расшифруйте все зашифрованные файлы с переменными.*
 
+![image](png/extra-01.png)
 
 ## Задача 2
 *Зашифруйте отдельное значение PaSSw0rd для переменной some_fact паролем netology. Добавьте полученное значение в group_vars/all/exmp.yml.*
 
+[group_vars/all/examp.yml](playbook/group_vars/all/examp.yml)
+
+```
+ansible-vault encrypt_string
+```
+
+![image](png/extra-02.png)
 
 ## Задача 3
 *Запустите playbook, убедитесь, что для нужных хостов применился новый fact.*
 
+```
+ansible-playbook -i inventory/prod.yml site.yml
+```
+
+![image](png/extra-03-01.png)
+
+```
+ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+```
+
+![image](png/extra-03-02.png)
 
 ## Задача 4
 *Добавьте новую группу хостов fedora, самостоятельно придумайте для неё переменную. В качестве образа можно использовать этот вариант.*
 
+[prod.yml](playbook/inventory/prod.yml)
+
+```
+ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
+```
+
+![image](png/extra-04.png)
 
 ## Задача 5
 *Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.*
+
+[run_ansible.sh](playbook/run_ansible.sh)
+
+```
+chmod +x run_ansible.sh
+./run_ansible.sh
+```
+
+![image](png/extra-05.png)

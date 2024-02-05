@@ -1,8 +1,8 @@
 version: "3.8"
 
 services:
-  fedora-39:
+  fedora-38:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: "fedora-39"
+    container_name: "fedora-38"
