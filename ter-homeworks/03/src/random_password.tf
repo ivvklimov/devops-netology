@@ -9,7 +9,6 @@ resource "random_password" "count" {
 #> type(random_password.count)  list(object)
 }
 
-
 resource "random_password" "each" {
   for_each = toset([for k, v in yandex_compute_instance.webservers : v.name ])
   length   = 17
