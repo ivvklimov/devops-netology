@@ -43,15 +43,6 @@ variable "vms_ssh_root_key" {
   description = "ssh-keygen -t ed25519"
 }
 
-# ---------------------------
-variable "vms_resources" {
-  type = map(object({
-    cores         = number
-    memory        = number
-    core_fraction = number
-  }))
-}
-
 variable "public_key" {
   type    = string
   default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYqg0OxWS3TFgDB1gOSh3DuMu/KncEx1R+Gqmf9pBty6Hr+EEWA789jHao1e6ackJdxmNvllPYTm1pWtS2iLr7d8ki79WOUJ24YKdVc/kKF9YYnhSKJlaM7F5cKHMskyRAwi8IAFRqTdrgRoAC0xv6dORXJWIdkQ7HURque/BYK+ZMiFVTQaFFOTY/dIV/QEIIBNKvs5ESDMwK01XTwqtTg2xyS3uYV2zlLmz5ULtQatz8u79vnYYK/NmwfAy1l4B3sG7kZVeoSYDBgi0qqVeS6/nLYKMxCxLU/yUx1wzPkrEqPepOMv8CUzfiqxuCkHo9gluIceuosEmBqDpu39AH kiv@netology"
