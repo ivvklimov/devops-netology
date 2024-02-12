@@ -83,6 +83,8 @@ terraform plan
 ![image](png/04-03.png)
 
 ## Задача 5*
+ссылка на проект: [cluster](cluster/)
+
 Практические руководства Managed Service for MySQL
 
 https://cloud.yandex.ru/ru/docs/managed-mysql/tutorials/
@@ -132,11 +134,15 @@ Yandex Cloud хосты кластера
 1.
 
 ## Задача 7*
-1.
-2.
-3.
-4.
-5.
+ссылка на проект: [vault](vault/)
+
+terraform output
+
+![image](png/07-console.png)
+
+new secret
+
+![image](png/07-new-secret.png)
 
 ## Задача 8*
 1.
