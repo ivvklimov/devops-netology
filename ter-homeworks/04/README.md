@@ -128,10 +128,32 @@ Yandex Cloud хосты кластера
 
 ![image](png/05-yc-cluster-04.png)
 
-
-
 ## Задача 6*
 Cсылка на проект: [s3](s3/)
+
+При запуске terraform init возникает ошибка
+
+![image](png/06-error-terraform-init.png)
+
+Нашел первую версию яндекс провайдера, на базе которого можно создать бакет s3 с помощью заданного модуля. v0.92.0, там такая же ошибка, что и на последней версии. Посмотрел некоторые промежуточные версии до последней, таже ошибка.
+
+![image](png/06-error-yp-0-92-0.png)
+
+На v0.91.0 другая ошибка
+
+![image](png/06-error-yp-0-91-0.png)
+
+Далее попробовал предыдущую версию модуля относительно коммита тега, такая же ошибка.
+
+![image](png/06-error-module-1-0-0.png)
+
+У данного модуля есть открытый ишью с такой проблемой:
+
+https://github.com/terraform-yc-modules/terraform-yc-s3/issues/5
+
+```
+Далее, по-необходимости, бакет будет создан через gui Yandex Cloud
+```
 
 ## Задача 7*
 Cсылка на проект: [vault](vault/)
@@ -145,9 +167,27 @@ new secret
 ![image](png/07-new-secret.png)
 
 ## Задача 8*
-1.
+Cсылка на проект: [remote_state](remote_state/)
 
+Т.к. в задаче 6* s3 модуль не смог создать бакет, создаем его через gui Yandex Cloud. В каждом модуле, который будет работать с S3 создадим файл secret.backend.tfvars и пропишем туда access_key и secret_key.
 
+Подключим файл с секретами backend при инициации инфраструктуры:
+```
+terraform init -backend-config=secret.backend.tfvars
+```
+*При этом terraform подгрузит все параметры, описанные в -backend-config, внутрь блока backend.*
+
+Содержимое бакета в S3 Yandex Cloud
+
+![image](png/08-s3-bucket.png)
+
+Сохраненный стейт layer1-network
+
+![image](png/08-s3-network.png)
+
+Сохраненный стейт layer2-servers
+
+![image](png/08-s3-servers.png)
 
 ```
 p.s. После создания скриншотов вносил корректиировку в название модулей, возможно расхождение
