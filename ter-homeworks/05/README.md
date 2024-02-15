@@ -195,6 +195,8 @@ terraform plan
 
 ## Задача 4
 
+Cсылка на проект: [validation](validation/variables.tf)
+
 IP success
 
 ![image](png/04-ip-success.png)
@@ -214,6 +216,8 @@ IP list error
 # Дополнительные задания
 
 ## Задача 5*
+
+Cсылка на проект: [validation](validation/variables.tf)
 
 Any string success
 
