@@ -195,11 +195,49 @@ terraform plan
 
 ## Задача 4
 
+IP success
+
+![image](png/04-ip-success.png)
+
+IP error
+
+![image](png/04-ip-error.png)
+
+IP list success
+
+![image](png/04-ip-list-success.png)
+
+IP list error
+
+![image](png/04-ip-list-error.png)
 
 # Дополнительные задания
 
 ## Задача 5*
 
+Any string success
+
+![image](png/05-any-string-success.png)
+
+Any string error
+
+![image](png/05-any-string-error.png)
+
+Only one success
+
+![image](png/05-only-one-success.png)
+
+Only one error
+
+![image](png/05-only-one-error.png)
+
+Both success
+
+![image](png/05-both-success.png)
+
+Both error
+
+![image](png/05-both-error.png)
 
 ## Задача 6*
 
