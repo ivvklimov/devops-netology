@@ -142,32 +142,38 @@ terraform console
 docker run --rm -v "$(pwd):/tflint" ghcr.io/terraform-linters/tflint --chdir /tflint
 ```
 
-Получаем следующий список предупреждений
+Получаем список предупреждений
 
 ![image](png/03-error-tflint.png)
 
 Запускаем проверку **checkov**
 
+```
 docker run --rm --tty --volume $(pwd):/tf --workdir /tf bridgecrew/checkov \
 --download-external-modules true --directory /tf
+```
 
-Получаем следующий список предупреждений
+Получаем список предупреждений
 
 ![image](png/03-error-checkov-01.png)
 ![image](png/03-error-checkov-02.png)
 ![image](png/03-error-checkov-03.png)
+
+### Некоторые комментарии к ошибкам
+
+Описание ошибок **checkov**
 
 https://www.checkov.io/5.Policy%20Index/terraform.html
 
 **Check: CKV_YC_2: "Ensure compute instance does not have public IP."**
 https://github.com/bridgecrewio/checkov/blob/main/checkov/terraform/checks/resource/yandexcloud/ComputeVMPublicIP.py
 
-Если нам необходим внешний доступ, то мы можем проигнорировать предупреждение CKV_YC_2. Предупреждение связано с тем, что включенная опция nat может повлечь за собой риски безопасности, но если мы осознанно приняли это решение и наша конфигурация работает в рамках наших требований, то предупреждение можно проигнорировать.
+*Если нам необходим внешний доступ, то мы можем проигнорировать предупреждение CKV_YC_2. Предупреждение связано с тем, что включенная опция nat может повлечь за собой риски безопасности, но если мы осознанно приняли это решение и наша конфигурация работает в рамках наших требований, то предупреждение можно проигнорировать.*
 
 **Check: CKV_YC_11: "Ensure security group is assigned to network interface."**
 https://github.com/bridgecrewio/checkov/blob/main/checkov/terraform/checks/resource/yandexcloud/ComputeVMSecurityGroup.py
 
-Для виртуальных машин необходимо задать группу безопасности.
+*Для виртуальных машин необходимо задать группу безопасности.*
 
 После внесения правок повторная проверка **tflint** не показывает замечаний
 
