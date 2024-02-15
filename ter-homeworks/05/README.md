@@ -191,6 +191,8 @@ terraform plan
 ![image](png/03-terraform-plan-02.png)
 ![image](png/03-terraform-plan-03.png)
 
+Ссылка на Pull Request: [Fixed tflint and checkov warnings](https://github.com/ivvklimov/devops-netology/pull/16)
+
 ## Задача 4
 
 
