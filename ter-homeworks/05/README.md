@@ -245,16 +245,7 @@ Both error
 
 ## Задача 6*
 
-В процессе:
-> Поднять локально GiLab
-> Написать свой CI/CD
-  - GitLab Pipelines
-  - tflint
-  - checkov
-  - terraform plan > outfile
-  - должен быть какой-то Pull Request, который превратится в CD
-> Развернуть инфраструктуру с ее помощью
-> Уничтожить инфраструктуру с ее помощью
+Полезная информация с канала **Yandex Cloud**: [CI/CD в Облаке с помощью GitLab](https://www.youtube.com/watch?v=L2G85V4WH2k)
 
 ## Задача 7*
 
