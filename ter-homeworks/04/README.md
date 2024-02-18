@@ -1,6 +1,6 @@
 ## Домашнее задание
 
-https://github.com/netology-code/ter-homeworks/blob/main/04
+https://github.com/netology-code/ter-homeworks/blob/main/04/hw-04.md
 
 # Основная часть
 
@@ -171,7 +171,7 @@ Cсылка на проект: [remote_state](remote_state/)
 
 Т.к. в задаче 6* s3 модуль не смог создать бакет, создаем его через gui Yandex Cloud. В каждом модуле, который будет работать с S3 создадим файл secret.backend.tfvars и пропишем туда access_key и secret_key.
 
-Подключим файл с секретами backend при инициации инфраструктуры:
+Подключим файл с секретами backend при инициализации инфраструктуры:
 ```
 terraform init -backend-config=secret.backend.tfvars
 ```

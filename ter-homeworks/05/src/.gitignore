@@ -15,5 +15,3 @@ secret.*
 
 #ansible
 *.cfg
-
-notes.md

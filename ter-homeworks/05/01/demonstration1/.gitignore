@@ -8,12 +8,9 @@
 
 # own secret vars store.
 personal.auto.tfvars
-secret.*
 
 #checkov
 .external_modules
 
 #ansible
 *.cfg
-
-notes.md
