@@ -245,6 +245,77 @@ Both error
 
 ## Задача 6*
 
+В процессе:
+> Поднять локально GiLab
+> Написать свой CI/CD
+  - GitLab Pipelines
+  - tflint
+  - checkov
+  - terraform plan > outfile
+  - должен быть какой-то Pull Request, который превратится в CD
+> Развернуть инфраструктуру с ее помощью
+> Уничтожить инфраструктуру с ее помощью
 
 ## Задача 7*
 
+[ydb-s3-tfstate](07/modules/ydb-s3-tfstate) - модуль для создания сервисного аккаунта с нужными ролями, также он создает S3 бакет для хранения стейта и создает YDB, в которой уже через gui надо создать нужную таблицу для хранения данных о блокировке, т.к. соответствующее api яндексом пока не реализовано.
+
+[s3-init](07/s3_init/) - проект, который с помощью [ydb-s3-tfstate](07/modules/ydb-s3-tfstate) производит соответствующие настройки
+
+[test](07/test/) - тестовый проект, который работает с удаленным стейтом и блокировками
+
+### Создание инфраструктуры
+
+Перейти в проект s3_init
+```
+terraform init
+terraform apply
+yes
+
+в gui Перейти в:
+Managed Service for YDB
+  - Базы данных
+    - ter-05-task-07
+
+Создать - Таблицу - Документальная таблица
+Оставить одну колонку, переименовать ее в LockID
+Таблицу назвать tfstate-dev
+
+terraform output access_key
+terraform output secret_key
+terraform output ydb_api
+```
+
+Перейти в проект test
+```
+Заполнить данные в secret.backend.tfvars из terraform output выше
+terraform init -reconfigure -backend-config=secret.backend.tfvars
+terraform apply
+yes
+
+```
+*Cтейт в бакете создается, при этом никакие роли на него не назначены,
+блокировка в таблице также появляется.*
+
+### Удаление инфраструктуры
+
+Перейти в проект test
+```
+terraform destroy
+yes
+```
+
+Очистка бакета
+```
+terraform destroy в s3_init не сможет удалить бакет, если в нем будут данные.
+
+Поэтому заходим в gui и последовательно удаляем все данные из созданного бакета.
+```
+
+Перейти в проект s3_init
+```
+terraform destroy
+yes
+```
+
+*В коде модуля [ydb-s3-tfstate](07/modules/ydb-s3-tfstate) приведены комментарии* на разные части его функционала.
