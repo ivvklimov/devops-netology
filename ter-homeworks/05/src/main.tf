@@ -27,15 +27,16 @@ module "vpc" {
 # }
 
 module "marketing_vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
-  env_name       = "develop"
-  network_id     = module.vpc.network_id
-  subnet_zones   = [ module.vpc.zone ]
-  subnet_ids     = [ module.vpc.subnet_id ]
-  instance_name  = "marketing-web"
-  instance_count = 1
-  image_family   = "ubuntu-2004-lts"
-  public_ip      = true
+  source             = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=4d05fab828b1fcae16556a4d167134efca2fccf2"
+  env_name           = "develop"
+  network_id         = module.vpc.network_id
+  subnet_zones       = [ module.vpc.zone ]
+  subnet_ids         = [ module.vpc.subnet_id ]
+  instance_name      = "marketing-web"
+  instance_count     = 1
+  image_family       = "ubuntu-2004-lts"
+  public_ip          = false
+  security_group_ids = [ yandex_vpc_security_group.example.id ]
 
   # # для задания 4*
   # source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
@@ -63,15 +64,16 @@ module "marketing_vm" {
 }
 
 module "analytics_vm" {
-  source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
-  env_name       = "develop"
-  network_id     = module.vpc.network_id
-  subnet_zones   = [ module.vpc.zone ]
-  subnet_ids     = [ module.vpc.subnet_id ]
-  instance_name  = "analytics-web"
-  instance_count = 1
-  image_family   = "ubuntu-2004-lts"
-  public_ip      = true
+  source             = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=4d05fab828b1fcae16556a4d167134efca2fccf2"
+  env_name           = "develop"
+  network_id         = module.vpc.network_id
+  subnet_zones       = [ module.vpc.zone ]
+  subnet_ids         = [ module.vpc.subnet_id ]
+  instance_name      = "analytics-web"
+  instance_count     = 1
+  image_family       = "ubuntu-2004-lts"
+  public_ip          = false
+  security_group_ids = [ yandex_vpc_security_group.example.id ]
 
   # # для задания 4*
   # source         = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
