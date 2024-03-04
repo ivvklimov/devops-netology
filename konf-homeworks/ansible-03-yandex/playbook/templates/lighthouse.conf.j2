@@ -1,0 +1,12 @@
+server {
+    listen {{ lighthouse_http_port }};
+    server_name localhost;
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    location / {
+        root {{ lighthouse_local_dir }};
+
+        charset utf-8;
+    }
+}
