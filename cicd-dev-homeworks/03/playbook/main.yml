@@ -1,0 +1,4 @@
+- import_playbook: openjdk.yml
+- import_playbook: postgresql.yml
+- import_playbook: sonarqube.yml
+- import_playbook: nexus.yml
