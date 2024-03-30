@@ -16,4 +16,10 @@ https://github.com/netology-code/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/READ
 
 ## Знакомство с Nexus
 
+Файлы успешно загрузились
+
+![image](png/nexus.png)
+
+[maven-metadata.xml](example/maven-metadata.xml)
+
 ## Знакомство с Maven
