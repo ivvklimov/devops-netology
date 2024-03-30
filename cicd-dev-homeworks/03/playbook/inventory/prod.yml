@@ -1,0 +1,23 @@
+---
+all:
+  hosts:
+    sonar-01:
+      ansible_host: 84.201.130.114
+    nexus-01:
+      ansible_host: 158.160.108.253
+  children:
+    sonarqube:
+      hosts:
+        sonar-01:
+    nexus:
+      hosts:
+        nexus-01:
+    postgres:
+      hosts:
+        sonar-01:
+  vars:
+    ansible_connection_type: paramiko
+    ansible_user: centos
+
+    # не запрашивать подтверждение ключей хостов
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"

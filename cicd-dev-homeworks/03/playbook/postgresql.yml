@@ -1,0 +1,58 @@
+---
+- name: Get PostgreSQL installed
+  hosts: postgres
+  become: true
+  tasks:
+    - name: Change repo file
+      copy:
+        src: CentOS-Base.repo
+        dest: /etc/yum.repos.d/CentOS-Base.repo
+        mode: 0644
+        owner: root
+        group: root
+
+    - name: Install PostgreSQL repos
+      yum:
+        name: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+        state: present
+        validate_certs: false
+
+    - name: Install PostgreSQL
+      yum:
+        name: "postgresql{{ postgresql_version }}-server"
+        state: present
+
+    - name: Init template1 DB
+      command: /usr/pgsql-{{ postgresql_version }}/bin/postgresql-{{ postgresql_version }}-setup initdb
+      failed_when: false
+
+    - name: Start pgsql service
+      systemd:
+        name: "postgresql-{{ postgresql_version }}"
+        state: started
+        enabled: true
+
+    - name: Create user in system
+      user:
+        name: "{{ sonarqube_db_user }}"
+    - name: Create user for Sonar in PostgreSQL
+      become_user: postgres
+      command: "createuser -s -e {{ sonarqube_db_user }}"
+      failed_when: false
+
+    - name: Change password for Sonar user in PostgreSQL
+      become_user: postgres
+      command: "psql -c \"ALTER USER sonar WITH ENCRYPTED password '{{ sonarqube_db_password }}';\""
+
+    - name: Create Sonar DB
+      become_user: postgres
+      command: "createdb {{ sonarqube_db_name }}"
+      failed_when: false
+
+    - name: Copy pg_hba.conf
+      copy:
+        src: pg_hba.conf
+        dest: /var/lib/pgsql/{{ postgresql_version }}/data/pg_hba.conf
+        mode: 0600
+        owner: postgres
+        group: postgres
