@@ -23,3 +23,9 @@ https://github.com/netology-code/mnt-homeworks/blob/MNT-video/09-ci-03-cicd/READ
 [maven-metadata.xml](example/maven-metadata.xml)
 
 ## Знакомство с Maven
+
+Сборка пакета, версия mvn и скаченный с Nexus артефакт
+
+![image](png/maven.png)
+
+[pom.xml](example/pom.xml)
