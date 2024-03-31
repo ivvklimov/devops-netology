@@ -1,0 +1,9 @@
+---
+- name: Install Clickhouse
+  hosts: clickhouse
+  gather_facts: false
+
+  roles:
+    - ../roles/clickhouse
+  tags:
+    - clickhouse

@@ -1,0 +1,23 @@
+---
+vector_config:
+  sources:
+    sample_file:
+      type: file
+      read_from: beginning
+      ignore_older_secs: 600
+      include:
+        - ~/logs/*.log
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - sample_file
+      endpoint: http://172.115.0.5:8123
+      database: logs
+      table: some_log
+      auth:
+        strategy: basic
+        user: logger
+        password: logger
+      skip_unknown_fields: true
+      compression: gzip
