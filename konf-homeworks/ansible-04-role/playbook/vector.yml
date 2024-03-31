@@ -1,0 +1,8 @@
+---
+- name: Install and Configure Vector
+  hosts: vector
+
+  roles:
+    - ../roles/vector
+  tags:
+    - vector

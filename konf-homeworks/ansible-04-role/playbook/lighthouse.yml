@@ -1,0 +1,45 @@
+---
+- name: Install and Configure Nginx
+  hosts: lighthouse
+  gather_facts: false
+
+  roles:
+    - ../roles/nginx
+  tags:
+    - nginx
+
+- name: Install Lighthouse
+  hosts: lighthouse
+  gather_facts: false
+
+  roles:
+    - ../roles/lighthouse
+  tags:
+    - lighthouse
+
+  # для того, чтобы centos в docker имела возможность работать с systemctl
+  # необходимо заменить стандартный systemctl кастомным, который добавляется в образ
+  # на замену стандартного, также копия кладется в папку /tmp.
+  #
+  # после установки nginx из роли systemctl возвращается стандартный и 
+  # команда на перезапуск сервиса не отрабатывает.
+  #
+  # для того, чтобы плейбук не падал, в роли в хэндлеры перезапуска сервисов добавлен
+  # атрибут ignore_errors: true.
+  #
+  # данные таски восстанавливают кастомный systemctl и производят перезапуск nginx.
+  tasks:
+    - name: Change systemctl (fix for docker)
+      copy:
+        remote_src: yes
+        src: /tmp/systemctl
+        dest: /usr/bin/systemctl
+        mode: 0755
+        owner: root
+        group: root
+
+    - name: Restart nginx service
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
