@@ -43,6 +43,12 @@ verify
 docker run --privileged=True -v ~/VSC/ansible/ansible-role-vector:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
 ```
 
+docker
+
+![image](png/tox_docker.png)
+
+podman
+
 ![image](png/tox_podman_start.png)
 
 [tox.ini (1.0.2)](https://github.com/ivvklimov/ansible-role-vector/blob/1.0.2/tox.ini)
