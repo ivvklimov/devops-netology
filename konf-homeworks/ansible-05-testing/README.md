@@ -45,10 +45,10 @@ docker run --privileged=True -v ~/VSC/ansible/ansible-role-vector:/opt/vector-ro
 
 ![image](png/tox_podman_start.png)
 
-[tox.ini](https://github.com/ivvklimov/ansible-role-vector/blob/1.0.1/tox.ini)
+[tox.ini (1.0.2)](https://github.com/ivvklimov/ansible-role-vector/blob/1.0.2/tox.ini)
 
 ## Molecule for ansible-role-vector
 
-[default](https://github.com/ivvklimov/ansible-role-vector/tree/1.0.2/molecule/default)
+[default (1.0.2)](https://github.com/ivvklimov/ansible-role-vector/tree/1.0.2/molecule/default)
 
-[light](https://github.com/ivvklimov/ansible-role-vector/tree/1.0.2/molecule/light)
+[light (1.0.2)](https://github.com/ivvklimov/ansible-role-vector/tree/1.0.2/molecule/light)
