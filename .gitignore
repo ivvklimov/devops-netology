@@ -17,3 +17,4 @@ secret.*
 *.cfg
 
 notes.md
+.venv*

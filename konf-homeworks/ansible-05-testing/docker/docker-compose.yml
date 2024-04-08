@@ -1,0 +1,66 @@
+version: "3.8"
+
+networks:
+  clickhouse:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.115.0.0/16
+
+services:
+  clickhouse-centos-7:
+    container_name: clickhouse-centos-7
+    hostname: clickhouse-centos-7
+    build:
+      context: .
+      dockerfile: centos/Dockerfile
+    networks:
+      clickhouse:
+        ipv4_address: 172.115.0.5
+    expose:
+      - 22
+      - 9000
+    ports:
+      - 8123:8123
+    volumes:
+      - ~/.ssh/id_rsa.pub:/home/ansible/.ssh/authorized_keys
+      - clickhouse-centos-etc:/etc
+      - clickhouse-centos-data:/var/lib/clickhouse
+
+  vector-centos-7:
+    container_name: vector-centos-7
+    hostname: vector-centos-7
+    build:
+      context: .
+      dockerfile: centos/Dockerfile
+    networks:
+      clickhouse:
+        ipv4_address: 172.115.0.6
+    expose:
+      - 22
+    volumes:
+      - ~/.ssh/id_rsa.pub:/home/ansible/.ssh/authorized_keys
+      - vector-centos-etc-ssh:/etc/ssh
+
+  lighthouse-centos-7:
+    container_name: lighthouse-centos-7
+    hostname: lighthouse-centos-7
+    build:
+      context: .
+      dockerfile: centos/Dockerfile
+    networks:
+      clickhouse:
+        ipv4_address: 172.115.0.7
+    expose:
+      - 22
+    ports:
+      - 8124:8124
+    volumes:
+      - ~/.ssh/id_rsa.pub:/home/ansible/.ssh/authorized_keys
+      - lighthouse-centos-etc-ssh:/etc/ssh
+
+volumes:
+  clickhouse-centos-etc:
+  clickhouse-centos-data:
+  vector-centos-etc-ssh:
+  lighthouse-centos-etc-ssh:
