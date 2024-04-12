@@ -45,11 +45,11 @@ https://github.com/netology-code/mnt-homeworks/blob/MNT-video/09-ci-04-jenkins/R
 
 ![image](png/prod_run_pipeline.png)
 
-run_prod = true
+prod_run = true
 
 ![image](png/prod_run_true.png)
 
-run_prod = false (default)
+prod_run = false (default)
 
 ![image](png/prod_run_false.png)
 
