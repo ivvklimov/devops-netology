@@ -1,0 +1,65 @@
+## Домашнее задание
+
+https://github.com/netology-code/kuber-homeworks/blob/main/1.1/1.1.md
+
+#### Установка MicroK8S
+
+```
+sudo apt update,
+sudo apt install snapd
+sudo snap install microk8s --classic
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+newgrp microk8s
+```
+
+#### Установка kubectl
+
+```
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+echo 'source <(kubectl completion bash)' >> ~/.bashrc
+source ~/.bashrc
+```
+
+
+#### Пполучение текущего конфига:
+
+```
+microk8s config
+```
+
+#### Получение токена:
+
+```
+token=$(kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
+kubectl -n kube-system describe secret $token
+```
+
+#### Проброс порта к dashboard:
+```
+microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address=0.0.0.0
+```
+
+#### kubectl get nodes
+
+![image](png/get-nodes.png)
+
+#### Dashboard
+
+```
+Не пускает с конфигом, пускает с токеном
+```
+
+
+![image](png/dashboard.png)
+
+#### Lens
+
+```
+Пускает с конфигом
+```
+
+![image](png/lens.png)
