@@ -66,3 +66,42 @@ curl nginx:1180
 ![image](png/multitool.png)
 
 Оба приложения доступны.
+
+### Задание 2
+
+Пробуем запустить deployment с init контейнером:
+
+```
+kubectl get deployments
+kubectl get pods
+kubectl apply -f init-nginx.yaml
+kubectl get deployments
+kubectl get pods
+```
+
+![image](png/init-nginx-deployment.png)
+
+Видим, что init контейнер находится в ожидании.
+
+Посмотрим на логи init контейнера:
+
+![image](png/init-nginx-nslookup-waiting.png)
+
+Запустим сервис nginx:
+
+```
+kubectl apply -f service.yaml
+kubectl get svc
+kubectl get deployments
+kubectl get pods
+```
+
+![image](png/init-nginx-service.png)
+
+Контейнер успешно запустился.
+
+Посмотрим на логи init контейнера:
+
+![image](png/init-nginx-nslookup-success.png)
+
+Видим, что dns зарезолвилось.
