@@ -41,8 +41,8 @@ curl nginx:9002
 Приложения успешно открываются.
 
 Манифесты:
-- [deployment](deployment.yaml)
-- [service](service.yaml)
+- [deployment.yaml](deployment.yaml)
+- [service.yaml](service.yaml)
 
 ### Задание 2
 
