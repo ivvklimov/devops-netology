@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-2-1
+  labels:
+    app: kuber-2-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kuber-2-1
+  template:
+    metadata:
+      labels:
+        app: kuber-2-1
+    spec:
+      volumes:
+      - name: data
+        emptyDir: {}
+      containers:
+        - name: busybox
+          image: busybox
+          command: ["/bin/sh", "-c", "while true; do echo $(date) >> /netology/file.txt; sleep 5; done"]
+          volumeMounts:
+            - name: data
+              mountPath: /netology
+        - name: multitool
+          image: wbitt/network-multitool
+          env:
+          - name: HTTP_PORT
+            value: "1180"
+          - name: HTTPS_PORT
+            value: "11443"
+          ports:
+            - containerPort: 1180
+              name: http-port
+            - containerPort: 11443
+              name: https-port
+          volumeMounts:
+            - name: data
+              mountPath: /netology
