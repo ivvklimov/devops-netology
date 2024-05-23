@@ -24,28 +24,37 @@ echo 'source <(kubectl completion bash)' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+#### kubectl get nodes
 
-#### Пполучение текущего конфига:
+![image](png/get-nodes.png)
+
+#### Пполучение текущего конфига
 
 ```
 microk8s config
 ```
 
-#### Получение токена:
+#### Получение токена
 
 ```
 token=$(kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
 kubectl -n kube-system describe secret $token
 ```
 
-#### Проброс порта к dashboard:
+#### Посмотреть подключенные/доступные модули
+```
+microk8s status
+```
+
+#### Включить dashboard
+```
+microk8s enable dashboard
+```
+
+#### Проброс порта к dashboard
 ```
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443 --address=0.0.0.0
 ```
-
-#### kubectl get nodes
-
-![image](png/get-nodes.png)
 
 #### Dashboard
 
