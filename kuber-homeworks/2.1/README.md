@@ -33,3 +33,30 @@ tail /netology/file.txt
 
 Манифесты:
 - [deployment.yaml](deployment.yaml)
+
+
+### Задание 2
+
+Поднимаем daemonset с multitool для чтения логов с кластера microk8s
+
+```
+kubectl get pods
+kubectl apply -f daemonset.yaml
+kubectl get pods
+```
+
+![image](png/daemonset.png)
+
+Daemonset в Lens
+
+![image](png/daemonset-lens.png)
+
+Читаем syslog с кластера кубера через pod daemonset'a
+```
+kubectl exec -it read-logs-kvh8x -- tail /var/log/microk8s/syslog
+```
+
+![image](png/syslog.png)
+
+Манифесты:
+- [daemonset.yaml](daemonset.yaml)

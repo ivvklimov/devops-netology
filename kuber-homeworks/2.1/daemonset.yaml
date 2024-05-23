@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: read-logs
+spec:
+  selector:
+    matchLabels:
+      app: read-logs
+  template:
+    metadata:
+      labels:
+        app: read-logs
+    spec:
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        volumeMounts:
+          - name: varlog
+            mountPath: /var/log/microk8s
