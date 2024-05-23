@@ -48,3 +48,63 @@ curl frontend
 - [frontend.yaml](frontend.yaml)
 - [svc-backend.yaml](svc-backend.yaml)
 - [svc-frontend.yaml](svc-frontend.yaml)
+
+### Задание 2
+
+Посмотрим подключенные/доступные модули
+
+```
+microk8s status
+```
+
+![image](png/microk8s-status-01.png)
+
+Модуль Ingress отключен.
+
+Включаем модуль Ingress
+
+```
+microk8s enable ingress
+```
+
+![image](png/microk8s-enable-ingress.png)
+
+Посмотрим подключенные/доступные модули
+
+```
+microk8s status
+```
+
+![image](png/microk8s-status-02.png)
+
+Модуль Ingress включен.
+
+Настраиваем Ingress
+
+```
+kubectl get ingress
+kubectl apply -f ingress.yaml
+kubectl get ingress
+```
+
+![image](png/ingress.png)
+
+Ingress в Lens
+
+![image](png/ingress-lens.png)
+
+Проверяем доступность приложений через Ingress с другого компьютера
+
+```
+На компьютере, с которого будем поключаться к приложениям, предварительно необходимо добавить в /etc/hosts запись вида:
+192.168.0.35 example.local
+
+где 192.168.0.35 адрес Ingress
+```
+
+![image](png/ingress-test.png)
+
+Приложения успешно открываются.
+
+Манифесты:
+- [ingress.yaml](ingress.yaml)
