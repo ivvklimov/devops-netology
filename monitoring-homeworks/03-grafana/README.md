@@ -2,13 +2,13 @@
 
 https://github.com/netology-code/mnt-homeworks/blob/MNT-video/10-monitoring-03-grafana/README.md
 
-# Задача 1
+### Задание 1
 
 Prometheus подключен как источник данных в Grafana
 
 ![image](png/datasources.png)
 
-# Задача 2
+### Задание 2
 
 Утилизация CPU
 ```
@@ -34,7 +34,7 @@ sum by(mountpoint) (node_filesystem_avail_bytes{mountpoint=~"/"})
 
 ![image](png/dashboard.png)
 
-# Задача 3
+### Задание 3
 
 Dashboard с настроенными алертами
 
@@ -48,7 +48,7 @@ Dashboard с настроенными алертами
 
 ![image](png/alerting-telegram.png)
 
-# Задача 4
+### Задание 4
 
 Dashboard
 - [dashboard.json](dashboard.json)
