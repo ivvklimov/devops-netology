@@ -10,7 +10,6 @@ Prometheus подключен как источник данных в Grafana
 
 # Задача 2
 
-
 Утилизация CPU
 ```
 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[$__rate_interval])) * 100)
@@ -35,3 +34,21 @@ sum by(mountpoint) (node_filesystem_avail_bytes{mountpoint=~"/"})
 
 ![image](png/dashboard.png)
 
+# Задача 3
+
+Dashboard с настроенными алертами
+
+![image](png/alerting-dashboard.png)
+
+![image](png/alerting-list.png)
+
+Видим, что алерты сработали.
+
+Также пришли сообщения в Telegram
+
+![image](png/alerting-telegram.png)
+
+# Задача 4
+
+Dashboard
+- [dashboard.json](dashboard.json)

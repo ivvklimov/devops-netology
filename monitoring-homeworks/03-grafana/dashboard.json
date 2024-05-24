@@ -78,9 +78,11 @@
             "type": "prometheus",
             "uid": "R4-kR8ESz"
           },
+          "editorMode": "code",
           "expr": "100 - (avg by(instance) (irate(node_cpu_seconds_total{mode=\"idle\"}[$__rate_interval])) * 100)",
           "interval": "",
           "legendFormat": "CPU load",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -295,9 +297,11 @@
             "type": "prometheus",
             "uid": "R4-kR8ESz"
           },
+          "editorMode": "code",
           "expr": "node_memory_MemFree_bytes{instance=\"nodeexporter:9100\"}",
           "interval": "",
           "legendFormat": "Free RAM",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -389,10 +393,12 @@
             "type": "prometheus",
             "uid": "R4-kR8ESz"
           },
+          "editorMode": "code",
           "expr": "sum by(mountpoint) (node_filesystem_avail_bytes{mountpoint=~\"/\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "/",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -430,20 +436,20 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Netology",
   "uid": "OwlszUPSk",
-  "version": 8,
+  "version": 10,
   "weekStart": ""
 }
