@@ -24,7 +24,7 @@ kubectl get pods
 
 ![image](png/deployment.png)
 
-Смотрим, что контейнер busybox наполняет файл /netology/file.txt данными. При этом эти данные доступны в контейнере multotool и на ноде кластера K8s.
+Смотрим, что контейнер busybox наполняет файл /netology/file.txt данными. При этом эти данные доступны в контейнере multitool и на ноде кластера K8s.
 
 ```
 kubectl exec -it kuber-2-2-5547ccc4fc-l4s8g -c busybox -- tail /netology/file.txt
@@ -86,6 +86,70 @@ sudo rm -r /home/kiv/netology-pv
 ```
 
 Манифесты:
-- [deployment.yaml](deployment.yaml)
-- [pvc.yaml](pvc.yaml)
-- [pv.yaml](pv.yaml)
+- [pv.yaml](task-1/pv.yaml)
+- [pvc.yaml](task-1/pvc.yaml)
+- [deployment.yaml](task-1/deployment.yaml)
+
+### Задание 2
+
+Настраиваем nfs server по данной инструкции: \
+https://microk8s.io/docs/how-to-nfs
+
+Настраиваем SC и PVC
+
+```
+kubectl get pvc
+kubectl get pv
+kubectl get sc
+kubectl get deployments
+kubectl get pods
+kubectl apply -f sc-nfs.yaml
+kubectl apply -f pvc-nfs.yaml
+kubectl get sc
+kubectl get pvc
+kubectl get pv
+```
+
+![image](png/nfs-pvc.png)
+
+```
+kubectl describe pvc pvc-vol-nfs
+```
+
+![image](png/nfs-pvc-describe.png)
+
+Видим, что PV сформировался автоматически.
+
+Для наглядности поднимем deployment с подом и двумя контейнерами busybox и multitool из предыдущего задания, подключенными к nfs.
+
+```
+kubectl apply -f deployment.yaml
+kubectl get deployments
+kubectl get pods
+```
+
+![image](png/nfs-deployment.png)
+
+Смотрим, что контейнер busybox наполняет файл /netology/file.txt данными. При этом эти данные доступны в контейнере multitool.
+
+```
+kubectl exec -it kuber-2-2-7fd86f6b45-hb2cf -c busybox -- tail /netology/file.txt
+kubectl exec -it kuber-2-2-7fd86f6b45-hb2cf -c multitool -- tail /netology/file.txt
+```
+
+![image](png/nfs-file.png)
+
+Файл с данными расположен на нашем nfs сервере
+
+```
+ls -ls /srv/nfs
+ls -la /srv/nfs/pvc-3e44bc35-3002-4ac7-a18d-0a745864aa1a
+tail /srv/nfs/pvc-3e44bc35-3002-4ac7-a18d-0a745864aa1a/file.txt
+```
+
+![image](png/nfs-file-node.png)
+
+Манифесты:
+- [sc-nfs.yaml](task-2/sc-nfs.yaml)
+- [pvc-nfs.yaml](task-2/pvc-nfs.yaml)
+- [deployment.yaml](task-2/deployment.yaml)

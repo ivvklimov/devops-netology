@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuber-2-2
+  labels:
+    app: kuber-2-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kuber-2-2
+  template:
+    metadata:
+      labels:
+        app: kuber-2-2
+    spec:
+      volumes:
+      - name: data-nfs
+        persistentVolumeClaim:
+            claimName: pvc-vol-nfs
+      containers:
+        - name: busybox
+          image: mirror.gcr.io/library/busybox
+          command: ["/bin/sh", "-c", "while true; do echo $(date) >> /netology/file.txt; sleep 5; done"]
+          volumeMounts:
+            - name: data-nfs
+              mountPath: /netology
+        - name: multitool
+          image: mirror.gcr.io/wbitt/network-multitool
+          volumeMounts:
+            - name: data-nfs
+              mountPath: /netology
