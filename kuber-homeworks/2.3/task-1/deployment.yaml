@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: mirror.gcr.io/nginx:1.26.0
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              name: nginx-conf
+            - mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+              name: nginx-conf
+        - name: multitool
+          image: mirror.gcr.io/wbitt/network-multitool
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx
